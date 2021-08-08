@@ -14,10 +14,12 @@ describe('O artefato que queremos testar', () => {
 
 /*
     Essas funções são disponibilizadas pela framework do Jasmine;
-    Para executar os testes encritos com o Jasmine, é utilizado o framework Karma;
+    Para executar os testes encritos com o Jasmine, é utilizado o framework Karma que\
+    é um automatizador de execução criado pelo Google, e que já era usado pelo\
+    Angular desde sua primeira versão, o AngularJS;
 */
-describe('UniqueIdService', () => {
-    it('#generateUniqueIdWithPrefix should generate id when called with prefix', () => {
+describe(UniqueIdService.name, () => {
+    it(`#${UniqueIdService.prototype.generateUniqueIdWithPrefix.name} should generate id when called with prefix`, () => {
         const service  = new UniqueIdService();
         const id = service.generateUniqueIdWithPrefix('app');
         expect(id).toContain('app-');
