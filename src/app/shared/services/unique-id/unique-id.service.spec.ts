@@ -20,6 +20,13 @@ describe('O artefato que queremos testar', () => {
 */
 const APP_PREFIX = 'app';
 
+/*
+    Regras de uso das assert do Jasmine
+    1. toBeTrue|toBeFalse: espera como expectativa um valor literal true ou false;
+    2. toBe: espera que as instâncias representem o mesmo objeto;
+    3. toBeTruthy: espera que o valor da expectativa seja um valor verdadeiro segundo as regras do JavaScript\
+    : null, undefined, '', 0;
+*/
 
 describe(UniqueIdService.name, () => {
     let service: UniqueIdService = null;
