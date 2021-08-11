@@ -1,3 +1,4 @@
+import { LikeWidgetModule } from './like-widget.module';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
@@ -16,9 +17,8 @@ describe(LikeWidgetComponent.name, () => {
             TestBed
             // configura o modulo a cada teste
             .configureTestingModule({
-                declarations: [LikeWidgetComponent],                // declara o componente deste módulo de teste
-                providers: [UniqueIdService],                       // declara os serviços deste módulo de teste
-                imports: [FontAwesomeModule]                        // declara as dependências deste módulo de teste
+                // essa é outra abordagem de teste, que simplifica o teste depois do componente ter sido desenvolvido
+                imports: [LikeWidgetModule]                        // declara as dependências deste módulo de teste
             }).compileComponents();
 
         // cria o objeto que embrulha o component. Este objeto é conhecido como Fixture
