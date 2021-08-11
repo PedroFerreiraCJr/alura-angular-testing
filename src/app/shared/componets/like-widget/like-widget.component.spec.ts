@@ -47,12 +47,13 @@ describe(LikeWidgetComponent.name, () => {
     });
 
     // teste de output property
+    // a função done deve ser chamada para que o teste passe com sucesso
     it(`#${LikeWidgetComponent.prototype.like.name}
-     should trigger emission when called`, () => {
+     should trigger emission when called`, done => {
         fixture.detectChanges();
-
         component.liked.subscribe(() => {
             expect(true).toBeTrue();
+            done();
         });
         component.like();
     });
