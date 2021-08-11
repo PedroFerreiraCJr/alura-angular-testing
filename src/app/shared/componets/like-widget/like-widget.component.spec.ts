@@ -1,12 +1,11 @@
-import { LikeWidgetModule } from './like-widget.module';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
+import { LikeWidgetModule } from './like-widget.module';
 import { LikeWidgetComponent } from './like-widget.component';
-import { UniqueIdService } from './../../services/unique-id/unique-id.service';
 
 describe(LikeWidgetComponent.name, () => {
     let fixture: ComponentFixture<LikeWidgetComponent> = null;
+    let component: LikeWidgetComponent = null;
 
     // essa forma de uso do TestBed é mais segura de ser usada, pois independente do assembler\
     //no caso do Angular, atualmente WebPack, gera o componente inline
@@ -23,12 +22,38 @@ describe(LikeWidgetComponent.name, () => {
 
         // cria o objeto que embrulha o component. Este objeto é conhecido como Fixture
         fixture = TestBed.createComponent(LikeWidgetComponent);
+        component = fixture.componentInstance;
     });
 
     // verifica se o TestBed conseguiu criar o componente corretamente
     it('Should create component', () => {
-        const instance = fixture.componentInstance;
-        expect(instance).toBeTruthy();
+        expect(component).toBeTruthy();
+    });
+
+    it('Should auto generate ID when id input property is missing', () => {
+        // no ambiente de teste, o desenvolvedor é que é responsável por disparar a detecção de alterações no componente
+        fixture.detectChanges();
+
+        expect(component.id).toBeTruthy();
+    });
+
+    it('Should NOT generate ID when id input property is present', () => {
+        const someId = 'app-someId';
+        component.id = someId;
+        // somente chama o detectChanges depois de configurar o input property
+        fixture.detectChanges();
+
+        expect(component.id).toBe(someId);
+    });
+
+    // teste de output property
+    it(`#${LikeWidgetComponent.prototype.like.name}
+     should trigger emission when called`, () => {
+        fixture.detectChanges();
+
+        component.liked.subscribe(() => {
+            expect(true).toBeTrue();
+        });
+        component.like();
     });
 });
-
